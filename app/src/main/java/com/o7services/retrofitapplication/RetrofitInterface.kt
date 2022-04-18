@@ -17,9 +17,6 @@ interface RetrofitInterface {
     @POST("users")
     @FormUrlEncoded
     fun createUser(@Header("Authorization") token: String,
-        @Field("email") email: String,
-        @Field("name") name: String,
-        @Field("gender") gender: String,
-        @Field("status") status: String,
+                   @FieldMap() map: Map<String, String>
     ): Call<UserResponseItem>
 }

@@ -41,7 +41,11 @@ class CommentsActivity : AppCompatActivity() {
         retrofit.retrofitInterface.getComments().enqueue(object : Callback<CommentsResponse> {
             override fun onResponse(call: Call<CommentsResponse>, response: Response<CommentsResponse>) {
                 Log.e("TAG", "response ${response.body()}")
-                response.body()?.let { commentsAdapter.updateList(it) }
+                if(response.code() ==  200) {
+                    response.body()?.let { commentsAdapter.updateList(it) }
+                }else{
+
+                }
                 progressBar.visibility = View.GONE
 
             }
